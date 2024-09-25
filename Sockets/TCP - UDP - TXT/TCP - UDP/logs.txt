@@ -1,0 +1,10 @@
+
+Fecha de inicio del servidor: 2024-09-23 11:33:50
+
+Datos recibidos del cliente TCP ('192.168.215.11', 52461): Hola soy yisus 
+Datos recibidos del cliente UDP ('192.168.211.43', 53148): Soy jose luis
+Datos recibidos del cliente UDP ('192.168.234.19', 54739): itzel 
+Datos recibidos del cliente UDP ('192.168.214.199', 64625): Hola soy Gissel y hoy es lunes 23 de septiembre
+Datos recibidos del cliente UDP ('192.168.239.207', 49852): Hola soy Ima :3
+Datos recibidos del cliente UDP ('192.168.234.19', 54739): :)
+Datos recibidos del cliente TCP ('192.168.215.11', 52461): hola yo de nuevo TCP

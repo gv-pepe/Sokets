@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHATSAPP 23</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="cliente.css">
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+</head>
+<body>
+
+    <div class="chat-container">
+
+        <div class="chat-body" id="mensajes"></div>
+
+        <div class="chat-footer">
+            <input type="text" id="autor" placeholder="Tu nombre" required class="input-autor">
+            <input type="text" id="texto" placeholder="Escribe un mensaje" required class="input-texto">
+            <button id="enviar" class="btn-enviar">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        const socket = io('https://mensajeria-svh2.onrender.com');
+
+        socket.on('cargarMensajes', (mensajes) => {
+            const mensajesDiv = document.getElementById('mensajes');
+            mensajesDiv.innerHTML = ''; 
+            mensajes.forEach(mensaje => {
+                mostrarMensaje(mensaje);
+            });
+        });
+
+        socket.on('mensajeRecibido', (mensaje) => {
+            mostrarMensaje(mensaje);
+        });
+
+        document.getElementById('enviar').addEventListener('click', enviarMensaje);
+
+        document.getElementById('texto').addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                enviarMensaje();
+            }
+        });
+
+        function enviarMensaje() {
+            const autor = document.getElementById('autor').value;
+            const texto = document.getElementById('texto').value;
+
+            if (autor && texto) {
+                socket.emit('enviarMensaje', { autor, texto });
+                document.getElementById('texto').value = '';
+            }
+        }
+
+        function mostrarMensaje(mensaje) {
+            const mensajesDiv = document.getElementById('mensajes');
+            const mensajeDiv = document.createElement('div');
+            mensajeDiv.className = `mensaje ${mensaje.autor === document.getElementById('autor').value ? 'mi-mensaje' : 'otro-mensaje'}`;
+            mensajeDiv.innerHTML = `<strong>${mensaje.autor}:</strong> ${mensaje.texto}`;
+            mensajesDiv.appendChild(mensajeDiv);
+            mensajesDiv.scrollTop = mensajesDiv.scrollHeight;
+        }
+    </script>
+</body>
+</html>

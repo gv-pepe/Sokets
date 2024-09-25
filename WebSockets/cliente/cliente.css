@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    flex-grow: 1;
+    max-width: 600px; /* Set a max-width for the chat container */
+    margin: auto; /* Center the chat container */
+}
+
+.chat-body {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background-color: #494949;
+    display: flex;
+    flex-direction: column; /* Stack messages vertically */
+}
+
+.mensaje {
+    display: inline-block; /* Allows messages to wrap based on content */
+    padding: 10px;
+    margin: 5px 0; /* Space between messages */
+    border-radius: 8px;
+    max-width: 80%; /* Limit the maximum width of the messages */
+    word-wrap: break-word; /* Break long words */
+}
+
+.mi-mensaje {
+    background-color: #ff7e79; /* Light green for user's messages */
+    align-self: flex-end; /* Align user's messages to the right */
+}
+
+.otro-mensaje {
+    background-color: #f1f1f1; /* Light gray for others' messages */
+    align-self: flex-start; /* Align others' messages to the left */
+}
+
+.chat-footer {
+    display: flex;
+    padding: 10px;
+    background-color: #313131;
+    border-top: 1px solid #ccc;
+}
+
+.input-autor, .input-texto {
+    flex-grow: 1;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.input-autor {
+    margin-right: 5px;
+}
+
+.btn-enviar {
+    padding: 10px 15px;
+    background-color: #fd2b2b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-enviar:hover {
+    background-color: #fdfdfd;
+}
+
+@media (max-width: 600px) {
+    .input-autor {
+        display: none; /* Hide the author input on small screens */
+    }
+
+    .chat-container {
+        width: 95%; /* Make the chat container responsive on small screens */
+    }
+}
